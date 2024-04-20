@@ -1,3 +1,12 @@
-export const name : string = 'Juan';
+import { ServerApp } from "./presentation/server";
 
-console.log(name);
+(async() => {
+  main();
+})();
+
+/**
+ * Metodo principal de la aplicacion
+ */
+function main  () {
+  ServerApp.start();
+}
