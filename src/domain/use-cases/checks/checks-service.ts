@@ -1,3 +1,5 @@
+import { LogRepository } from '../../repository/log.repositiry';
+import { LogEntity } from '../../entities/log.entity';
 type SuccessCb = () => void;
 type ErrorCb = (error:string) => void;
 
@@ -5,7 +7,9 @@ interface CheckServiceUseCase {
   execute(url:string) : Promise<boolean>;
 }
 
-
+/**
+ * Servicio encargado de realizar seguimiento a direcciones de servicios activos
+ */
 export class CheckService implements CheckServiceUseCase {
 
   /**
@@ -14,12 +18,13 @@ export class CheckService implements CheckServiceUseCase {
    * @param errorCallback Funcion de llamada que se ejecuta si existe un error
    */
   constructor(
-    private readonly successCallback: SuccessCb,
-    private readonly errorCallback: ErrorCb,
+    private readonly logRepository    : LogRepository,
+    private readonly successCallback ?: SuccessCb,
+    private readonly errorCallback   ?: ErrorCb,
   ){ }
 
   /**
-   * Ejecutar la comprobacion del estado activo del servicio
+   * @title Ejecutar la comprobacion del estado activo del servicio
    * @param url Direccion a consultar
    * @returns boolean
    */
@@ -27,11 +32,21 @@ export class CheckService implements CheckServiceUseCase {
     try {
       const resp = await fetch(url, {method: 'get'});
       if(!resp) throw `fail check response > ${ url }`;
-      this.successCallback();
+
+      const log : LogEntity = new LogEntity(`Service status ok: ${url}`, 'low');
+      this.logRepository.saveLog(log);
+
+      this.successCallback && this.successCallback();
+
       return true;
     } catch (error) {
-      console.error(`[Check service error] ${error}`);
-      this.errorCallback(`${error}`);
+      const errorMsg = `[Check service error] ${error} at service: ${url}`;
+
+      const log : LogEntity = new LogEntity(errorMsg, 'high');
+      this.logRepository.saveLog(log);
+
+      this.errorCallback && this.errorCallback(errorMsg);
+      
       return false;
     }
   }
