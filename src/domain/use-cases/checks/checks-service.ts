@@ -1,5 +1,6 @@
 import { LogRepository } from '../../repository/log.repositiry';
 import { LogEntity } from '../../entities/log.entity';
+
 type SuccessCb = () => void;
 type ErrorCb = (error:string) => void;
 
@@ -33,7 +34,7 @@ export class CheckService implements CheckServiceUseCase {
       const resp = await fetch(url, {method: 'get'});
       if(!resp) throw `fail check response > ${ url }`;
 
-      const log : LogEntity = new LogEntity(`Service status ok: ${url}`, 'low');
+      const log : LogEntity = new LogEntity({level: 'low', message: `Service status ok: ${url}`, origin: '[checks-service.ts] execute method'});
       this.logRepository.saveLog(log);
 
       this.successCallback && this.successCallback();
@@ -42,7 +43,7 @@ export class CheckService implements CheckServiceUseCase {
     } catch (error) {
       const errorMsg = `[Check service error] ${error} at service: ${url}`;
 
-      const log : LogEntity = new LogEntity(errorMsg, 'high');
+      const log : LogEntity = new LogEntity({level: 'high', message: errorMsg, origin: '[checks-service.ts] execute method'});
       this.logRepository.saveLog(log);
 
       this.errorCallback && this.errorCallback(errorMsg);

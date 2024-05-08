@@ -5,7 +5,7 @@ El objetivo de esta aplicación es brindar una aplicación para el monitoreo con
 1. Clonar el repositorio
 2. Instalar los modulos correspondientes
 3. Crear el archivo de variables de entrono *(.env)* con la estructura especificada en el archivo plantilla *([.env.template](.env.template))*
-```.env
+```docker
     # Puerto donde corre la aplicación
     PORT = 3100
     # Dirección email a donde enviar reportes

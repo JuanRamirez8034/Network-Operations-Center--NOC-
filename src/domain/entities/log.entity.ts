@@ -4,6 +4,16 @@
 export type SeverityLevel = 'low' | 'medium' | 'high';
 
 /**
+ * Opciones para construir una entidad de log
+ */
+export interface LogEntityOptions {
+  createdAt?: Date;
+  level     : SeverityLevel;
+  message   : string;
+  origin    : string;
+}
+
+/**
  * Entidad que representa la estructura de un log
  */
 export class LogEntity {
@@ -11,6 +21,7 @@ export class LogEntity {
   public createdAt : Date;
   public level     : SeverityLevel;
   public message   : string;
+  public origin    : string;
 
 
   /**
@@ -18,10 +29,11 @@ export class LogEntity {
    * @param message Mensaje a guardar
    * @param level Nivel de severidad del mensaje
    */
-  constructor( message : string, level : SeverityLevel) {
-    this.createdAt = new Date();
-    this.level     = level;
-    this.message   = message;
+  constructor( options:LogEntityOptions) {
+    this.createdAt = (options.createdAt) ? options.createdAt : new Date();
+    this.level     = options.level;
+    this.message   = options.message;
+    this.origin    = options.origin;
   }
 
   /**
@@ -31,12 +43,11 @@ export class LogEntity {
    */
   public static jsonAsLogEntity(logJson:string): LogEntity {
     // validando que el string correspondiente al json contenga los valores message, level y createdAt    
-    if(!logJson.includes('message') || !logJson.includes('level') || !logJson.includes('createdAt')) throw new Error('[jsonAsLogEntity] json format is not valid');
+    if(!logJson.includes('message') || !logJson.includes('level') || !logJson.includes('createdAt') || !logJson.includes('origin')) throw new Error('[jsonAsLogEntity] json format is not valid');
     // obteniendo la informacion del log
-    const { message, level, createdAt } : LogEntity = JSON.parse(logJson);
+    const { message, level, createdAt, origin } : LogEntityOptions = JSON.parse(logJson);
     // creando la entidad 
-    const logEntity : LogEntity = new LogEntity(message, level);
-    logEntity.createdAt = new Date(createdAt);
+    const logEntity : LogEntity = new LogEntity({message, level, createdAt: (new Date(createdAt!)), origin});
     return logEntity;
   }
   
