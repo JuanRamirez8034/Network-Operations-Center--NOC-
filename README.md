@@ -6,14 +6,16 @@ El objetivo de esta aplicación es brindar una aplicación para el monitoreo con
 2. Instalar los modulos correspondientes
 3. Crear el archivo de variables de entrono *(.env)* con la estructura especificada en el archivo plantilla *([.env.template](.env.template))*
 ```docker
-    # Puerto donde corre la aplicación
+    # Puerto donde corre la aplicacion
     PORT = 3100
-    # Dirección email a donde enviar reportes
+    # Servicio de envio de correos
+    MAILER_SERVICE = gmail
+    # Direccion email a donde enviar reportes
     MAILER_EMAIL = example@email.com
     # Clave secreta para el correo
     MAILER_SECRET_KEY = mySecretMailerKey123
-    # Modo de ejecución producción
-    PRODUCTIóN = false
+    # Modo de ejecucion produccion
+    PRODUCTION = false
 ```
 
 ## Comandos

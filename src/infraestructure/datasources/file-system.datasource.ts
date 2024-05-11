@@ -10,7 +10,7 @@ import { LogEntity, SeverityLevel } from "../../domain/entities/log.entity";
 export class FileSystemDatasource implements LogDataSource {
 
   // direcciones en path donde se almacenaran los logs
-  private readonly logsPath       : string = pathJoin('logs');
+  private readonly logsPath      : string = pathJoin('logs');
   private readonly lowLogPath    : string = pathJoin(this.logsPath, 'logs-low.log');
   private readonly mediumLogPath : string = pathJoin(this.logsPath, 'logs-medium.log');
   private readonly highLogPath   : string = pathJoin(this.logsPath, 'logs-high.log');
