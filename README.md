@@ -16,6 +16,14 @@ El objetivo de esta aplicación es brindar una aplicación para el monitoreo con
     MAILER_SECRET_KEY = mySecretMailerKey123
     # Modo de ejecucion produccion
     PRODUCTION = false
+    # Direccion de la base de datos de mongo
+    MONGO_URL = myMongoDbAddress
+    #  Nombre de la base de datos de mongo
+    MONGO_DB_NAME = myMongoDbName
+    #  Usuario de la base de datos
+    MONGO_USER =  myMongoDbUser
+    # Contrasena de la base de dato
+    MONGO_PASS = myMongoDbPassword
 ```
 
 ## Comandos
