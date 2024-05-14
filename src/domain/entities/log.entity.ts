@@ -51,4 +51,14 @@ export class LogEntity {
     return logEntity;
   }
   
+  public static fromObjectAsLogEntity(logObject: {[key:string]: any}): LogEntity {
+    if(!logObject['message'] || !logObject['level'] || !logObject['createdAt'] || !logObject['origin']) throw new Error('[fromObjectAsLogEntity] object undefined properties');
+    return new LogEntity({
+      level: logObject['level'],
+      message: logObject['message'],
+      createdAt: logObject['createdAt'],
+      origin: logObject['origin'],
+    });
+  }
+  
 }
