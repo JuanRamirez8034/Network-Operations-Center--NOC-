@@ -2,7 +2,9 @@ import { LogModel } from "../../data/mongo";
 import { LogDataSource } from "../../domain/datasources/log.datasource";
 import { LogEntity, SeverityLevel } from "../../domain/entities/log.entity";
 
-
+/**
+ * Surtidor de data para los logs implementando clase abstracta correspondiente al dataSource utilizando MongoDb
+ */
 export class MongoLogDataSource implements LogDataSource {
 
   /**

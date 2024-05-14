@@ -5,9 +5,9 @@ import { LogDataSource } from "../../domain/datasources/log.datasource";
 import { LogEntity, SeverityLevel } from "../../domain/entities/log.entity";
 
 /**
- * Surtidor de data para los logs implementando clase abstracta correspondiente al dataSource
+ * Surtidor de data para los logs implementando clase abstracta correspondiente al dataSource utilizando FileSystem
  */
-export class FileSystemDatasource implements LogDataSource {
+export class FileSystemLogDatasource implements LogDataSource {
 
   // direcciones en path donde se almacenaran los logs
   private readonly logsPath      : string = pathJoin('logs');

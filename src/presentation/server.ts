@@ -1,13 +1,13 @@
 import { CheckService } from "../domain/use-cases/checks/checks-service";
 import { EmailSendLogs } from "../domain/use-cases/email/email-send-logs";
-import { FileSystemDatasource } from "../infraestructure/datasources/file-system.datasource";
+import { FileSystemLogDatasource } from "../infraestructure/datasources/fileSystem-log.datasource";
 import { MongoLogDataSource } from "../infraestructure/datasources/mongo-log.datasource";
 import { LogRepositoryImplementation } from "../infraestructure/repositories/log.repository.implementation";
 import { CronService } from "./cron/cron-service";
 import { EmailService } from "./email/email-service";
 
 const logRepositoryImplementation = new LogRepositoryImplementation(
-  // new FileSystemDatasource()
+  // new FileSystemLogDatasource()
   new MongoLogDataSource()
 );
 const emailServiceInstance = new EmailService();

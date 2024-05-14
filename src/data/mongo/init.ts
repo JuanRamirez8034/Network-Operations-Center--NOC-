@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { LogModel } from "./models/log-model";
 
 export interface MongoDataBaseConnectionConfig {
   dbName: string;
