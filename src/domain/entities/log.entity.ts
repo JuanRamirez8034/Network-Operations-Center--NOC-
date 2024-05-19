@@ -51,6 +51,11 @@ export class LogEntity {
     return logEntity;
   }
   
+  /**
+   * @title Convertir un objeto a un logEntity
+   * @param logObject Objeto con elementos coincidentes a los necesarios en un LogEntity
+   * @returns LogEntity
+   */
   public static fromObjectAsLogEntity(logObject: {[key:string]: any}): LogEntity {
     if(!logObject['message'] || !logObject['level'] || !logObject['createdAt'] || !logObject['origin']) throw new Error('[fromObjectAsLogEntity] object undefined properties');
     return new LogEntity({

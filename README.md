@@ -1,6 +1,10 @@
 # Aplicación Centro de operaciones de red (NOC)
 El objetivo de esta aplicación es brindar una aplicación para el monitoreo constante de servicios de red utilizando node y Js como la herramienta de implementación.
 
+## Requerimientos para correr en desarrollo
+- **Node V18.19.0**
+- **Docker** 
+
 ## Pasos para recosntrucción del proyecto
 1. Clonar el repositorio
 2. Instalar los modulos correspondientes
@@ -16,6 +20,7 @@ El objetivo de esta aplicación es brindar una aplicación para el monitoreo con
     MAILER_SECRET_KEY = mySecretMailerKey123
     # Modo de ejecucion produccion
     PRODUCTION = false
+
     # Direccion de la base de datos de mongo
     MONGO_URL = myMongoDbAddress
     #  Nombre de la base de datos de mongo
@@ -23,7 +28,20 @@ El objetivo de esta aplicación es brindar una aplicación para el monitoreo con
     #  Usuario de la base de datos
     MONGO_USER =  myMongoDbUser
     # Contrasena de la base de dato
-    MONGO_PASS = myMongoDbPassword
+    MONGO_PASSWORD = myMongoDbPassword
+
+    # Direccion de la base de datos de Postgres
+    POSTGRES_URL = myPostgresDbAddress
+    # nombre de la base de datos de postgres
+    POSTGRES_DB_NAME = myPostgresDbName
+    # Usuario de la base de datos de postgres
+    POSTGRES_USER = myPostgresDbUser
+    # contrasena de la base de datos de postgres
+    POSTGRES_PASSWORD = myPostgressDbPassword
+```
+4. Levantar la base de datos con el comando:
+```cmd
+    docker compose up -d
 ```
 
 ## Comandos
