@@ -5,6 +5,7 @@
   "main": "dist/app.js",
   "scripts": {
     "dev": "tsnd --respawn --clear src/app.ts",
+    "devup": "docker compose up -d && npm run dev",
     "build": "rimraf ./dist && tsc",
     "start": "npm run build && node dist/app.js"
   },

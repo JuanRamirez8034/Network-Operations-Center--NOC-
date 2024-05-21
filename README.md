@@ -46,5 +46,6 @@ El objetivo de esta aplicación es brindar una aplicación para el monitoreo con
 
 ## Comandos
 - **npm run dev** : Ejecuta el proyecto en modo desarrollo
+- **npm run devup** : Ejecuta el proyecto en modo desarrollo levantando primero las bases de datos
 - **npm run build** : Transpila el proyecto a javascript valido para correr en producción
 - **npm run start** : Ejecuta el proyecto en modo producción
