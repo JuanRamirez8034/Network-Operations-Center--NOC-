@@ -9,15 +9,15 @@ const logSchema = new Schema({
   level: {
     type: String,
     enum: ['low', 'medium', 'high'],
-    require: true,
+    required: true,
   },
   message: {
     type: String,
-    require: true,
+    required: true,
   },
   origin: {
     type: String,
-    require: true,
+    required: true,
   },
 });
 

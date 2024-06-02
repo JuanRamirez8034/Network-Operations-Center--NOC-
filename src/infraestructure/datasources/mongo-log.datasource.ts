@@ -13,8 +13,7 @@ export class MongoLogDataSource implements LogDataSource {
    * @returns void
    */
   public async saveLog(log: LogEntity): Promise<void> {
-    const newMongoLog = await LogModel.create(log);
-    await newMongoLog.save();
+    await LogModel.create(log);    
   }
 
   /**
@@ -23,7 +22,7 @@ export class MongoLogDataSource implements LogDataSource {
    * @returns Promesa que retorna un arreglo de LogEntity
    */
   public async getLogs(severityLevel: SeverityLevel): Promise<LogEntity[]> {
-    const mongoLogs = await LogModel.find({$eq: {level: severityLevel}});
+    const mongoLogs = await LogModel.find({level: {$eq: severityLevel}});
     return mongoLogs.map( mongoLog => LogEntity.fromObjectAsLogEntity(mongoLog))
   }
 

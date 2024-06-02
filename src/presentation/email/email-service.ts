@@ -1,5 +1,4 @@
 import { createTransport, Transporter } from "nodemailer";
-import { env } from "../../config/plugins";
 
 export interface EmailSendOptions {
   htmlBody     : string;
@@ -14,6 +13,16 @@ export interface Attachement {
   path   ?: string;
 }
 
+export interface EmailTransporterConfig {
+  service: string;
+  auth: TransporterAuth;
+}
+
+export interface TransporterAuth{
+  user: string;
+  pass: string;
+}
+
 /**
  * Servicio de envios de emails
  */
@@ -26,14 +35,8 @@ export class EmailService {
    * Nueva instancia de envio de correos
    * @param logRepository Repositorio para el guardado de logs de tipo LogRepository
    */
-  constructor(){
-    this._transporter = createTransport({
-      service: env.MAILER_SERVICE,
-      auth: {
-        user: env.MAILER_EMAIL,
-        pass: env.MAILER_SECRET_KEY,
-      },
-    });
+  constructor(config:EmailTransporterConfig){
+    this._transporter = createTransport(config);
   }
 
   /**
