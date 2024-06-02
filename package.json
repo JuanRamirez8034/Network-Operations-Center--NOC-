@@ -12,9 +12,9 @@
     "start": "npm run build && node dist/app.js",
     "prisma:test": "dotenv -e .env.test -- npm run prisma",
     "docker:test": "docker compose -f docker-compose.test.yml --env-file .env.test up -d",
-    "test": "npm run docker:test && jest",
+    "test": "npm run docker:test && npm run prisma:test && jest",
     "test:watch": "npm run docker:test && npm run prisma:test && jest --watch",
-    "test:coverage": "npm run docker:test && jest --coverage"
+    "test:coverage": "npm run docker:test && npm run prisma:test && jest --coverage"
   },
   "keywords": [
     "NOC",
