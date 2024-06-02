@@ -43,21 +43,20 @@ El objetivo de esta aplicación es brindar una aplicación para el monitoreo con
 ```
 4. Levantar la base de datos con el comando:
 ```cmd
-    docker compose up -d
+    npm run devup
 ```
-5. Como se utiliza el *[ORM de prisma](https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases/using-prisma-migrate-typescript-postgresql)* para manejar Postgres se debe ejecutar el comando:
-```cmd
-    npx prisma migrate dev
-```
-> Nota: Si aparece un error en el servidor, volver a ejecutar el paso 5 y reiniciar el servidor
 
 ## Comandos
-- **npm run dev** : Ejecuta el proyecto en modo desarrollo
-- **npm run devup** : Ejecuta el proyecto en modo desarrollo levantando primero las bases de datos
+- **npm run dev** : Ejecuta el proyecto en modo desarrollo luego de tener listas las bases de datos
+- **npm run docker:up** : Levanta las bases de datos con docker
+- **npm run prisma** : Migrar la configuracion de la base de datos de postgres
+- **npm run devup** : Ejecuta el proyecto en modo desarrollo levantando primero las bases de datos, luego migrando la base de datos de postgres y por ultimo corriendo el proyecto
 - **npm run build** : Transpila el proyecto a javascript valido para correr en producción
 - **npm run start** : Ejecuta el proyecto en modo producción
 - ***TESTING:***
+    > En modo testing se debe configurar el archivo **[.env.test](.env.test)** para el correcto funcionamiento de los comando de testing
     - **npm run docker:test** : Levantar bases de datos de testing
+    - **npm run prisma:test** : Migrar la configuracion de la base de datos de postgres con las variables de entorno de testing
     - **npm run test** : Correr el proyecto en modo testing
     - **npm run test:watch** : Levantar todo el proyecto en modo testing
     - **npm run test:coverage** : Generar el reporte de cobertura de los test
