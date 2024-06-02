@@ -5,10 +5,12 @@ El objetivo de esta aplicación es brindar una aplicación para el monitoreo con
 - **Node V18.19.0**
 - **Docker** 
 
-## Pasos para recosntrucción del proyecto
+## Pasos para recosntrucción del proyecto (en modo desarrollo)
 1. Clonar el repositorio
 2. Instalar los modulos correspondientes
 3. Crear el archivo de variables de entrono *(.env)* con la estructura especificada en el archivo plantilla *([.env.template](.env.template))*
+> Nota: Para obtener el *[MAILER_SECRET_KEY](https://myaccount.google.com/u/0/apppasswords)* puede visitar el enlace anterior
+
 ```docker
     # Puerto donde corre la aplicacion
     PORT = 3100
@@ -41,11 +43,20 @@ El objetivo de esta aplicación es brindar una aplicación para el monitoreo con
 ```
 4. Levantar la base de datos con el comando:
 ```cmd
-    docker compose up -d
+    npm run devup
 ```
 
 ## Comandos
-- **npm run dev** : Ejecuta el proyecto en modo desarrollo
+- **npm run dev** : Ejecuta el proyecto en modo desarrollo luego de tener listas las bases de datos
+- **npm run docker:up** : Levanta las bases de datos con docker
+- **npm run prisma** : Migrar la configuracion de la base de datos de postgres
+- **npm run devup** : Ejecuta el proyecto en modo desarrollo levantando primero las bases de datos, luego migrando la base de datos de postgres y por ultimo corriendo el proyecto
 - **npm run build** : Transpila el proyecto a javascript valido para correr en producción
 - **npm run start** : Ejecuta el proyecto en modo producción
-<!-- comentario test -->
+- ***TESTING:***
+    > En modo testing se debe configurar el archivo **[.env.test](.env.test)** para el correcto funcionamiento de los comando de testing
+    - **npm run docker:test** : Levantar bases de datos de testing
+    - **npm run prisma:test** : Migrar la configuracion de la base de datos de postgres con las variables de entorno de testing
+    - **npm run test** : Correr el proyecto en modo testing
+    - **npm run test:watch** : Levantar todo el proyecto en modo testing
+    - **npm run test:coverage** : Generar el reporte de cobertura de los test
